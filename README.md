@@ -15,17 +15,18 @@ the follow-up discussion.
 
 * Install dependencies using [uv](https://github.com/astral-sh/uv).
 * Sync dependencies:
-
   ```bash
   uv sync
   ```
-* Run the server locally:
-
+* Run the server:
   ```bash
   uv run server
   ```
+* Run your code:
+  ```bash
+  uv run cli
+  ```
 * Add any additional dependencies with:
-
   ```bash
   uv add <package>
   ```
@@ -113,7 +114,7 @@ export.
 
 ## Constraints
 
-* Do not use Pandas.
+* DO NOT use Pandas.
 * This exercise is designed for roughly 1-2 hours of focused work.
 * The full dataset may be large (millions of rows per download).
 * Your solution should be mindful of performance and memory usage.
