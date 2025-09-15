@@ -135,3 +135,11 @@ presenting them clearly. There is no single “correct” solution-what matters 
 reasoning behind your choices and how you communicate them. We will review and discuss
 your results together over a video call, so be prepared to explain and justify your
 decisions.
+
+## Submission Instructions
+When you have completed the assessment, please submit your work as a **public GitHub
+repository**.
+
+* Ensure the repository includes all source code, supporting files, and this README.
+* **DO NOT** submit a pull request to the company’s repositories.
+* Provide the link to your public repository to your recruiter or hiring contact.
