@@ -143,3 +143,5 @@ repository**.
 * Ensure the repository includes all source code, supporting files, and this README.
 * **DO NOT** submit a pull request to the company’s repositories.
 * Provide the link to your public repository to your recruiter or hiring contact.
+* During the interview, you will be asked to show off your solution running and do an
+  interactive code review. Be ready to share screen and have the project ready.
