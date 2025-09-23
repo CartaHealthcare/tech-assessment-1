@@ -4,7 +4,7 @@
 
 You are provided with a mock server that simulates healthcare data exports. Each export
 consists of one or more downloadable datasets in CSV format. Your task is to write a
-program that processes these datasets and computes summary statistics.
+program that processes these datasets and computes record counts.
 
 The goal of this exercise is not only correctness but also clarity, reasoning about
 trade-offs, and handling performance constraints. You are encouraged to use internet and
@@ -15,18 +15,22 @@ the follow-up discussion.
 
 * Install dependencies using [uv](https://github.com/astral-sh/uv).
 * Sync dependencies:
+
   ```bash
   uv sync
   ```
 * Run the server:
+
   ```bash
   uv run server
   ```
 * Run your code:
+
   ```bash
   uv run cli
   ```
 * Add any additional dependencies with:
+
   ```bash
   uv add <package>
   ```
@@ -46,7 +50,7 @@ Your task is to build a program that:
 1. **Discovers exports and their downloads** using the server API.
 2. **Processes CSV files** efficiently, taking into account file size and multiple
    downloads.
-3. **Produces summary statistics** across patients and totals, output as formatted JSON
+3. **Produces counts of records** across patients and totals, output as formatted JSON
    printed to stdout.
 
 The expected JSON structure should look like this (aggregated across *all* downloads of
@@ -56,76 +60,31 @@ an export):
 {
   "patients": {
     "P001": {
-      "heart_rate": {
-        "count": 1520,
-        "mean": 74.2,
-        "min": 55,
-        "max": 120,
-        "anomalies": 8,
-        "latency": 9.8
-      },
-      "spo2": {
-        "count": 1470,
-        "mean": 96.8,
-        "min": 85,
-        "max": 100,
-        "anomalies": 3,
-        "latency": 10.0
-      }
+      "heart_rate": 1520,
+      "spo2": 1470
     }
   },
   "totals": {
-    "heart_rate": {
-      "count": 8000,
-      "mean": 75.0,
-      "min": 50,
-      "max": 190,
-      "anomalies": 42,
-      "latency": 10.0
-    },
-    "spo2": {
-      "count": 6000,
-      "mean": 97.1,
-      "min": 70,
-      "max": 100,
-      "anomalies": 15,
-      "latency": 10.1
-    }
+    "heart_rate": 8000,
+    "spo2": 6000
   }
 }
 ```
 
-### Anomaly Definitions
-
-* **heart\_rate**: anomalies are values `<40` or `>180`
-* **spo2**: anomalies are values `<85` or `>100`
-* **bp\_sys**: anomalies are values `<90` or `>200`
-* **bp\_dia**: anomalies are values `<60` or `>120`
-
 ### Notes
 
 * Your CLI should accept an **export ID** (`demo`, `small`, or `large`) as an argument
-and run the analysis for that export.
-* `latency` is the average gap in seconds between consecutive events for a patient/event
-type, and for totals across all patients.
-* All statistics must be aggregated across *all downloads* belonging to the chosen
-export.
+  and run the analysis for that export.
+* All counts must be aggregated across *all downloads* belonging to the chosen export.
 * Download time ranges are guaranteed to be non-overlapping.
 
 ## Constraints
 
-* DO NOT use Pandas.
+* DO NOT use Pandas or Numpy.
 * This exercise is designed for roughly 1-2 hours of focused work.
 * The full dataset may be large (millions of rows per download).
 * Your solution should be mindful of performance and memory usage.
 * Aim for readability and maintainability of code.
-* Include tests for your implementation.
-
-## Deliverables
-
-* Your source code in a format that can be run locally.
-* A JSON output file with your computed statistics.
-* Instructions for running your program.
 
 ## Conclusion
 
@@ -137,10 +96,13 @@ your results together over a video call, so be prepared to explain and justify y
 decisions.
 
 ## Submission Instructions
+
 When you have completed the assessment, please submit your work as a **public GitHub
 repository**.
 
 * Ensure the repository includes all source code, supporting files, and this README.
+* Commit the final JSON output for each export as `demo.json`, `small.json`, and
+  `large.json`.
 * **DO NOT** submit a pull request to the company’s repositories.
 * Provide the link to your public repository to your recruiter or hiring contact.
 * During the interview, you will be asked to show off your solution running and do an
